@@ -34,10 +34,9 @@ Situé dans un réseau totalement distant. Il se trouve dans le Cloud et permet 
 
 
 ## Schéma présentation
-![Schéma de l'intégralité du système](Reference%5CImages%5CSch%C3%A9maAll.png)
 
 ### Partie Data
-![Schéma présentant l'architecture imaginé pour le côté simulateur](Reference%5CImages%5CSch%C3%A9maData.PNG)
+![Schéma présentant l'architecture imaginé pour le côté simulateur](Reference/Images/SchemaData.PNG)
 
 Première partie constituer de plusieurs éléments :
 
@@ -56,7 +55,7 @@ Il héberge aussi la page de visualisation des données. Qui affiche sur une map
 Ce composant à un rôle à la fois très simple mais aussi complexe. Il va devoir transmettre l’ensemble des informations (des capteurs) communiqué par UART à la partie Caserne en RF. C'est-à-dire qu'il va recevoir une succession de trame Json, qu'il va devoir retransmettre en étant sûr de sa bonne réception. Il va donc lire 1 Json à la fois en UART, le transmettre en radio en étant sûr de sa réception (Accusé de réception, donc lecture envoie successif), demander le json suivant à l'UART. Cela de façon la plus rapide possible afin que les données de la caserne soit en accord avec les données du simulateur. 
 
 ### Partie Caserne
-![Schéma présentant l'architecture imaginé pour le côté Caserne](Reference%5CImages%5CSch%C3%A9maCaserne.PNG)
+![Schéma présentant l'architecture imaginé pour le côté Caserne](Reference/Images/SchemaCaserne.PNG)
 - **Data Collector** : 
 Microbit qui va lire en RF une trame, dès qu'elle la bien reçu va la déchiffrer, vérifier son contenu, écrire en UART au WebServer, envoyé l'accusé de réception au capteur afin de valider la réception et au final se remettre en attente de la trame suivante.
  - **WebServer** :
@@ -71,7 +70,7 @@ Composé de plusieurs tables, il va stocker les informations des capteurs releva
 
 ### Partie Cloud
 
-![Schéma présentant l'architecture imaginé pour le côté Cloud](Reference%5CImage%5CSch%C3%A9maCloud.PNG)
+![Schéma présentant l'architecture imaginé pour le côté Cloud](Reference/Images/SchemaCloud.PNG)
 
 Sur un réseau distant contient plusieurs composants:
  - **WebServer** :
@@ -81,25 +80,29 @@ Sensiblement la même que la partie Caserne. Il stocke l'ensemble des informatio
  -  **Visualisation** :
 Rendu visuel des informations de la BDD.
 
+### Résultat Final
+
+![Schéma de l'intégralité du système](Reference/Images/SchemaAll.png)
+
 ## Architecture réseaux
 
 
 ## Structure BD
 ### BDD 1
-![La structure de la base de données côté Simulateur](%5CReference%5CImages%5CDatabaseSchema_BD2.png)
+![La structure de la base de données côté Simulateur](Reference/Images/DatabaseSchema_BD2.png)
 
 ### BDD 2
-![La structure de la base de données côté Caserne](Reference%5CImages%5CDatabaseSchemaEmergency.png)
+![La structure de la base de données côté Caserne](Reference/Images/DatabaseSchemaEmergency.png)
 
 ### BDD 3
-![La structure de la base de données côté Cloud](Reference%5CImages%5CDatabaseSchemaEmergency.png)
+![La structure de la base de données côté Cloud](Reference/Images/DatabaseSchemaEmergency.png)
 
 
 ## Diagramme de classes
 
 
 ## Diagramme de séquence
-![Le diagramme de séquence](Reference%5CImages%5CDiagSequence.png)
+![Le diagramme de séquence](Reference/Images/DiagSequence.png)
 
 ## Format JSON
 La communication entre le Data Center et la Caserne dans le système se fait par échange de trame en JSON. Cela pour des raisons de facilité d’implémentation et de rapidité au sein de ce module. 
