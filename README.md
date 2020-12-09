@@ -99,7 +99,7 @@ Rendu visuel des informations de la BDD.
 
 
 ## Diagramme de séquence
-![Le diagramme de séquence](Reference%5CImages%5CDiagSequence.png)
+![Le diagramme de séquence](Reference/Images/DiagSequence.png)
 
 ## Format JSON
 La communication entre le Data Center et la Caserne dans le système se fait par échange de trame en JSON. Cela pour des raisons de facilité d’implémentation et de rapidité au sein de ce module. 
