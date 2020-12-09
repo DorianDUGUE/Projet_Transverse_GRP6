@@ -34,7 +34,6 @@ Situé dans un réseau totalement distant. Il se trouve dans le Cloud et permet 
 
 
 ## Schéma présentation
-![Schéma de l'intégralité du système](Reference/Images/SchemaAll.png)
 
 ### Partie Data
 ![Schéma présentant l'architecture imaginé pour le côté simulateur](Reference/Images/SchemaData.PNG)
@@ -80,6 +79,10 @@ Point d'entré dans cette partie. Il va récupéré les informations du WebServe
 Sensiblement la même que la partie Caserne. Il stocke l'ensemble des informations dans le temps afin de pouvoir faire des visualisations plus complexes et statistiques sur le temps. 
  -  **Visualisation** :
 Rendu visuel des informations de la BDD.
+
+### Résultat Final
+
+![Schéma de l'intégralité du système](Reference/Images/SchemaAll.png)
 
 ## Architecture réseaux
 
