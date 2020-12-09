@@ -1,0 +1,4 @@
+Modifier la strucutre de la base de données avec la position du feu au lieu que capteur
+Simuler cette position par le Java Simulator
+Faire dépendre valeur capteur par position du feu
+Envoyé Camion Pompier en direction position capteur, puis vers position feu (qui sera déterminer par classe Camion) 
