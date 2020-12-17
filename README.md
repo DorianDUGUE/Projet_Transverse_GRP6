@@ -159,5 +159,5 @@ Avec les informations fournis au préalable on aura donc déjà une trame de 8 c
 
 On aura donc le schéma de communication suivant :
 
-![Schéma de communication RF](Reference/Images/EchangeRFMicrobit.png)
+![Schéma de communication RF](Reference/Images/CommunicationRFMicrobit.png)
 
