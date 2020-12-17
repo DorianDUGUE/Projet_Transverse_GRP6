@@ -136,8 +136,23 @@ La structure du JSON est la suivante :
 	}
 
 ## Chiffrement 
-Nous avions dans un premier temps d'effectuer le Chiffrement par les microbit et donc nous avions choisi un protocole de chiffrement de Vigenère, facilement implémentation sur les cartes. Mais en fin de compte nous avons fait le choix de chiffrer les données par AES puisque le (dé)chiffrement s'effectue par les WebServer qui possède plus de ressource. Améliorant ainsi la sécurité de notre échange d'information.
-Le principe est que chaque côté (WebServer) possède la même clé en dure dans leur code, ce qui permet de chiffré et déchiffré de la même manière.
+Nous avions dans un premier temps d'effectuer le Chiffrement par les microbit. Notamment le protocole de chiffrement de Vigenère, facilement implémentation sur les cartes. Mais en fin de compte nous avons fait le choix de chiffrer les données par AES puisque le (dé)chiffrement s'effectue par les WebServer qui possède plus de ressource . Améliorant ainsi la sécurité de notre échange d'information.
+Le principe est que de chaque côté, les WebServer possèdent la même clé en dure dans leur code, ce qui permet de chiffré et déchiffré de la même manière.
+
+## Communication UART
 
 
+## Communication RF
 
+La liaison de données entre les microbit sera assurée en communication RF (Radio-fréquence).
+Pour ce faire on on instaure plusieurs principe de base pour être sûr de ne pas obtenir des données d'autre Microbit, tel que :
+
+- On programme tous les Microbit dans le même **groupe**. Le groupe 5
+- On donne un **ID** à chaque Microbit. Ces ID seront les seuls accéptés par le Microbit receveur. Exemple : de A1, A2 ... jusqu'à Z9 
+- On organise un **message d'acquittement** pour savoir si le message à bien été reçu. Un simple numéro de message de 1 à N jusqu'à 99
+
+On propose donc le schéma de trame suivant :
+
+![Schéma de trame RF](Reference/Images/TrameMicroBit.png)
+
+Avec les informations fournis au préalable on aura donc déjà une trame de 8 caractères avec l'ID de la carte et le numéro d'acquitement. On aura donc 243 caractères de libre (251 au max lors d'un message RF) pour les données correspondant au message JSON.
