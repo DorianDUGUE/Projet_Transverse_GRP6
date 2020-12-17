@@ -156,3 +156,8 @@ On propose donc le schéma de trame suivant :
 ![Schéma de trame RF](Reference/Images/TrameMicroBit.png)
 
 Avec les informations fournis au préalable on aura donc déjà une trame de 8 caractères avec l'ID de la carte et le numéro d'acquitement. On aura donc 243 caractères de libre (251 au max lors d'un message RF) pour les données correspondant au message JSON.
+
+On aura donc le schéma de communication suivant :
+
+![Schéma de communication RF](Reference/Images/EchangeRFMicrobit.png)
+
