@@ -141,6 +141,9 @@ Le principe est que de chaque côté, les WebServer possèdent la même clé en 
 
 ## Communication UART
 
+La communication du serveur au Microbit se fait part un port COM configuré sous 115200 Bauds. Le serveur enverra toutes les données déjà chiffrées au format JSON divisé par un séparateur pour que le Microbit puisse rangé chaque série d'information (un feu en l'occurrence) dans un tableau qui sera utilisé pour la communication RF.
+
+On fera le système inverse pour envoyer les données sur l'autre serveur.
 
 ## Communication RF
 
