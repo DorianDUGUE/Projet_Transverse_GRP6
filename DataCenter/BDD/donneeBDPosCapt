@@ -1,0 +1,75 @@
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.82', '1');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.83', '4');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.84', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.85', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.86', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.87', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.88', '1');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.89', '8');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.77', '4.9', '9');
+
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.82', '1');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.83', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.84', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.85', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.86', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.87', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.88', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.89', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.76', '4.9', '0');
+
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.82', '3');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.83', '7');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.84', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.85', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.86', '6');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.87', '4');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.88', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.89', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.75', '4.9', '2');
+
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.82', '9');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.83', '3');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.84', '4');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.85', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.86', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.87', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.88', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.89', '0');
+INSERT INTO `capteur` (`x`, `y`, `valeur`)
+VALUES ('45.74', '4.9', '4');
