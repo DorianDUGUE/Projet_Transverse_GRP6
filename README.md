@@ -151,7 +151,7 @@ La liaison de données entre les microbit sera assurée en communication RF (Rad
 Pour ce faire on on instaure plusieurs principe de base pour être sûr de ne pas obtenir des données d'autre Microbit, tel que :
 
 - On programme tous les Microbit dans le même **groupe**. Le groupe 5
-- On donne un **ID** à chaque Microbit. Ces ID seront les seuls accéptés par le Microbit receveur. Exemple : de A1, A2 ... jusqu'à Z9 
+- On donne un **ID** à chaque Microbit. Ces ID seront les seuls accéptés par le Microbit receveur. Exemple : de A1A1, A2A1 ... jusqu'à Z9Z9 
 - On organise un **message d'acquittement** pour savoir si le message à bien été reçu. Un simple numéro de message de 1 à N jusqu'à 99
 
 On propose donc le schéma de trame suivant :
