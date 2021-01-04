@@ -76,13 +76,9 @@ def read_scales():
         liste = DB_curs.fetchall()
         print (liste)
         for ligne in liste:
-            print(ligne)
             num = ligne[0]
-            print(num)
             column = ligne[1]
-            print(column)
             row = ligne[2]
-            print(row)
             value = ligne[3]
             if (value > 0) :
                 string = "{Source : Serv1, Capteur : " + str(num) + ", PosX : " + str(row) + ", PosY : " + str(column) + ", Intensite : " + str(value) + "}"
