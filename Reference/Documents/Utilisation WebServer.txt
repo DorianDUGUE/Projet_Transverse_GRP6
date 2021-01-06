@@ -1,0 +1,33 @@
+Pour obtenir la VM :
+Download le fichier .ova sur le google drive au bout du lien fournis.
+
+Ensuite sur VirtualBox Faire :
+Fichier > Importer un appareil virtuel > selectionner dans fichier le fichier.ova
+
+L'allumer :
+les codes sont 
+login : dev
+mdp : dev
+
+Tous les services sont activé lors de son démarrage.
+
+Pour avoir accès à la base de données :
+- Ouvrir votre navigateur
+- Se rendre sur : http://127.0.0.1:8080/adminer.php
+- Se connecter avec les identifiants :
+login/mdp : root/dev (tous les droits); simu/simu (droits lecture)
+
+il y a les deux bases de données sur la VM :
+simulation : BDD DataCenter avec table capteur
+DBCaserne : BDD caserne avec les tables propres
+
+Pages possibles :
+http://127.0.0.1:8080/AJAX/
+ - page de test du script ajax, permet de visualiser les informations de la base "simulation"
+http://127.0.0.1:8080/phpinfo.php
+ - voir les informations du webserver
+http://127.0.0.1:8080/Simu/
+ - Map leaflet qui permet de visualiser les valeurs des capteurs de la base de données "simulation"
+ - on peut clique sur chaque rond afin de mieu voir leur etats
+http://127.0.0.1:8080/leaflet/leaflet_0/
+ - dossier de travail et de test pour application leaflet
