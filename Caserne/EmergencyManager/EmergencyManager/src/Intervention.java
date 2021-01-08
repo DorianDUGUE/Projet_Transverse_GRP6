@@ -1,89 +1,58 @@
+import java.util.List;
+
 public class Intervention {
-    private int interventionBDDID;
-    private CoordonneeRF capteurAssocie;
-    private Date dateDebut;
-    private Date dateFin;
-    private ArrayList<Caserne> casernesAffectees;
-    private ArrayList<Vehicule> vehiculesAffectes;
+    private Coordonees coords;
+    private List<Camion> camions;
+    private Feu feu;
 
-    public Intervention(CoordonneeRF capteurAssocie, Date dateDebut, Date dateFin) {
-        this.capteurAssocie = capteurAssocie;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.casernesAffectees = new ArrayList<Caserne>();
-        this.vehiculesAffectes = new ArrayList<Vehicule>();
-
+    public Intervention(Coordonees coords, List<Camion> camions, Feu feu) {
+        this.coords = coords;
+        this.camions = camions;
+        this.feu = feu;
     }
 
-    public Date getDateDebut() {
-        return dateDebut;
+    public Intervention(Coordonees coords,  Feu feu) {
+        this.coords = coords;
+        this.feu = feu;
     }
 
-    public Date getDateFin() {
-        return dateFin;
+    public Intervention CreerIntervention(Coordonees coords, Feu feu)
+    {
+        Intervention nouvelleIntervention = new Intervention(coords,feu);
+
+        return nouvelleIntervention;
     }
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
+
+    public Coordonees getCoords() {
+        return coords;
     }
 
-    public void setCasernesAffectees(ArrayList<Caserne> casernesAffectees) {
-        this.casernesAffectees = casernesAffectees;
+    public void setCoords(Coordonees coords) {
+        this.coords = coords;
     }
 
-    public void setVehiculesAffectes(ArrayList<Vehicule> vehiculesAffectes) {
-        this.vehiculesAffectes = vehiculesAffectes;
+    public List<Camion> getCamions() {
+        return camions;
     }
 
-    public CoordonneeRF getCapteurAssocie() {
-        return capteurAssocie;
+    public void setCamions(List<Camion> camions) {
+        this.camions = camions;
     }
 
-    public ArrayList<Caserne> getCasernesAffectees() {
-        return casernesAffectees;
+    public Feu getFeu() {
+        return feu;
     }
 
-    public ArrayList<Vehicule> getVehiculesAffectes() {
-        return vehiculesAffectes;
+    public void assignFeu(Feu feu) {
+        this.feu = feu;
     }
 
-    public void addCaserneAffectee(Caserne caserne){
-        this.casernesAffectees.add(caserne);
-    }
 
-    public void addVehiculeAffecte(Vehicule vehicule){
-        this.vehiculesAffectes.add(vehicule);
-    }
 
-    public void addCaserneAffectee(ArrayList<Caserne> casernes){
-        this.casernesAffectees.addAll(casernes);
-    }
 
-    public void addVehiculeAffecte(ArrayList<Vehicule> vehicules){
-        this.vehiculesAffectes.addAll(vehicules);
-    }
 
-    public void removeCaserneAffectee(Caserne caserne){
-        this.casernesAffectees.remove(caserne);
-    }
 
-    public void removeVehiculeAffecte(Vehicule vehicule){
-        this.vehiculesAffectes.remove(vehicule);
-    }
 
-    public void removeCaserneAffectee(ArrayList<Caserne> casernes){
-        this.casernesAffectees.removeAll(casernes);
-    }
 
-    public void removeVehiculeAffecte(ArrayList<Vehicule> vehicules){
-        this.vehiculesAffectes.removeAll(vehicules);
-    }
-
-    public int getInterventionBDDID() {
-        return interventionBDDID;
-    }
-
-    public void setInterventionBDDID(int interventionBDDID) {
-        this.interventionBDDID = interventionBDDID;
-    }
 }
