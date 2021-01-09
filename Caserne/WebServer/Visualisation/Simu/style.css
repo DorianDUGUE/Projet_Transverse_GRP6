@@ -1,0 +1,6 @@
+html, body/*, and all other map parent selectors*/ {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+#mapid { height: 100%;width: auto; }
