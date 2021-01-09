@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Caserne/EmergencyManager/Simulateur/EmergencyManager.iml" filepath="$PROJECT_DIR$/../Caserne/EmergencyManager/Simulateur/EmergencyManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Projet_Transverse_GRP6.iml" filepath="$PROJECT_DIR$/.idea/Projet_Transverse_GRP6.iml" />
     </modules>
   </component>
 </project>
