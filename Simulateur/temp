@@ -1,0 +1,8 @@
+while (execution)
+        {
+        System.out.println("Que souhaitez vous faire ?");
+        System.out.println("a: créer/modifier un feu");
+        System.out.println("b: créer/déplacer un camion");
+        System.out.println("c: quitter");
+        }
+        Scanner myObj = new Scanner(System.in);
