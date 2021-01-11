@@ -1,14 +1,25 @@
 public class Camion {
+    private int id;
     private int pouvoirDArret;
-    private Caserne caserne ;
+    private Caserne caserne;
     private Coordonees coord;
     private Boolean enIntervention;
 
-    public Camion(int pouvoirDArret, Caserne caserne, Coordonees coord, boolean enIntervention) {
+
+    public Camion(int id, int pouvoirDArret, Caserne caserne, Coordonees coord, boolean enIntervention) {
+        this.id = id;
         this.pouvoirDArret = pouvoirDArret;
         this.caserne = caserne;
         this.coord = coord;
         this.enIntervention = enIntervention;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPouvoirDArret() {
