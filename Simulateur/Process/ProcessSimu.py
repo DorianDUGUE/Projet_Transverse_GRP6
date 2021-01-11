@@ -1,6 +1,5 @@
 from tkinter import *
-import MySQLdb
-import serial
+import MySQLdb, serial
 
 """ initialisation de base """
 master = Tk()
@@ -9,7 +8,6 @@ BAUDRATE = 115200
 ser = serial.Serial()
 DB_curs = None
 DB_co = None
-loop = false
 
 """ fonction initialisant l'ensemble des connections (UART + BDD) """
 def init():
@@ -47,6 +45,7 @@ def init():
 
                 Btn['text'] = "Réinitialiser"
                 b['state'] = 'normal'
+            
         else:
                 ser.close()
                 if DB_co :
@@ -63,48 +62,59 @@ def sendUARTMessage(msg):
 """ Fonction qui va faire la requête et écrire chaque résultat sur l'UART """
 def read_scales():
     global DB_curs
-    global loop
     if loop:
         try:
-            req = 'SELECT * FROM capteur where valeur > 0;'
-            DB_curs.execute(req)
+                req = 'SELECT * FROM capteur where valeur > 0;'
+                DB_curs.execute(req)
         except Exception as e:
-            print("Requête SQL incorrecte :\n{}".format(req))
-            print("[ERREUR] ", e)
+                print("Requête SQL incorrecte :\n{}".format(req))
+                print("[ERREUR] ", e)
+                return 0
         else:
-            print ("Résultat requête :")
-            liste = DB_curs.fetchall()
-            print (liste)
-            for ligne in liste:
-                if (value > 0) :
-                    string = "{Source:Serv1,Capteur:" + str(ligne[0]) + ",PosX:" + str(ligne[1]) + ",PosY:" + str(ligne[2]) + ",Intensite:" + str(ligne[3]) + "}"
-                    print ("Envoie UART :")
-                    print(string)
-                    sendUARTMessage(string)
-    master.after(60000, read_scales)
+                print ("Résultat requête :")
+                liste = DB_curs.fetchall()
+                print (liste)
+                for ligne in liste:
+                    num = ligne[0]
+                    column = ligne[1]
+                    row = ligne[2]
+                    value = ligne[3]
+                    if (value > 0) :
+                        string = "{Source : Serv1, Capteur : " + str(num) + ", PosX : " + str(row) + ", PosY : " + str(column) + ", Intensite : " + str(value) + "}"
+                        print ("Envoie UART :")
+                        print(string)
+                        sendUARTMessage(string)
+        master.after(10000 , read_scales)
+        
 
-""" fonction du bouton stop pour arreter le programme """
+
+""" Fonction pour stoper le programme """
 def Stop_Click():
         global loop
         loop = False
         b['state'] = 'normal'
         stop['state'] = 'disabled'
 
-""" fonction du bouton start pour démarrer le programme """
+""" Fonction pour lancer le programme """
 def Start_Click():
         global loop
         loop = True
         stop['state'] = 'normal'
         b['state'] = 'disabled'
+        master.after(0 , read_scales)
+
+        
 
 """ Pour l'instant envoie en UART lors de l'appuie de Start """
-b    = Button(master, text="Start", highlightcolor="blue", command = Start_Click, state="disabled")
-stop = Button(master, text="STOP",  highlightcolor="blue", command = Stop_Click, state="disabled")
 Btn  = Button(master, text="Initialisation", highlightcolor="blue", command = init)
+b    = Button(master, text="Start", highlightcolor="blue", command = Start_Click, state="disabled")
+stop = Button(master, text="STOP", highlightcolor="blue",command = Stop_Click, state="disabled")
 
 Btn.grid(row=0, column=0, columnspan = 3)
 b.grid(row=0,column=7,columnspan = 3)
-stop.grid(row=0,column=14,columnspan=3)
+stop.grid(row=0, column=14,columnspan = 3)
 
-master.after(0, read_scales)
-master.mainloop()
+if __name__ == "__main__" :
+    print("Début du programme")
+    master.mainloop()
+    print("Fin du programme")
