@@ -1,14 +1,11 @@
 public class Feu {
-    private int idFeu;
     private int intensite;
     private Coordonees coord;
     private boolean brule;
 
-    public Feu(int idFeu, int intensite, Coordonees coord) {
-        this.idFeu = idFeu;
+    public Feu(int intensite, Coordonees coord) {
         this.intensite = intensite;
         this.coord = coord;
-        this.brule= true;
     }
 
     public boolean isBrule() {

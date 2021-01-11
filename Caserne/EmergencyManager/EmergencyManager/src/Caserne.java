@@ -2,11 +2,11 @@ import java.util.List;
 
 public class Caserne {
     private Coordonees coord;
-    private Camion camion;
+    private List<Camion> camions;
 
-    public Caserne(Coordonees coord, Camion camion) {
+    public Caserne(Coordonees coord, List<Camion> camions) {
         this.coord = coord;
-        this.camion = camion;
+        this.camions = camions;
     }
 
     public Coordonees getCoord() {
@@ -17,14 +17,18 @@ public class Caserne {
         this.coord = coord;
     }
 
-    public Camion getCamions() {
-        return camion;
+    public List<Camion> getCamions() {
+        return camions;
     }
 
     public void setCamions(List<Camion> camions) {
-        this.camion = camion;
+        this.camions = camions;
     }
 
+    public void AddCamion(Camion camionToAdd)
+    {
+        this.camions.add(camionToAdd);
+    }
 
 
 }
