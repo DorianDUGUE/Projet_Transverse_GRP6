@@ -156,7 +156,7 @@ Pour ce faire on on instaure plusieurs principe de base pour être sûr de ne pa
 
 On propose donc le schéma de trame suivant :
 
-![Schéma de trame RF](Reference/Images/TrameMicroBit.png)
+![Schéma de trame RF](Reference/Images/Trame Micro Bit.png)
 
 
 On aura donc le schéma de communication suivant :
