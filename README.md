@@ -141,7 +141,7 @@ Le principe est que de chaque côté, les WebServer possèdent la même clé en 
 
 ## Communication UART
 
-La communication du serveur au Microbit se fait part un port COM configuré sous 115200 Bauds. Le serveur enverra toutes les données déjà chiffrées au format JSON divisé par un séparateur pour que le Microbit puisse rangé chaque série d'information (un feu en l'occurrence) dans un tableau qui sera utilisé pour la communication RF.
+La communication du serveur au Microbit se fait part un port COM configuré sous 115200 Bauds. Le serveur enverra toutes les données divisé par un séparateur pour que le Microbit puisse rangé chaque série d'information (un feu en l'occurrence) dans un tableau qui sera utilisé pour la communication RF.
 
 On fera le système inverse pour envoyer les données sur l'autre serveur.
 
@@ -151,14 +151,13 @@ La liaison de données entre les microbit sera assurée en communication RF (Rad
 Pour ce faire on on instaure plusieurs principe de base pour être sûr de ne pas obtenir des données d'autre Microbit, tel que :
 
 - On programme tous les Microbit dans le même **groupe**. Le groupe 5
-- On donne un **ID** à chaque Microbit. Ces ID seront les seuls accéptés par le Microbit receveur. Exemple : de A1A1, A2A1 ... jusqu'à Z9Z9 
-- On organise un **message d'acquittement** pour savoir si le message à bien été reçu. Un simple numéro de message de 1 à N jusqu'à 99
+- On donne un **ID** à chaque Microbit. Ces ID seront les seuls accéptés par le Microbit receveur. Exemple : de C1, C2 etc... 
+- On organise un **message d'acquittement** pour savoir si le message à bien été reçu. Un simple numéro de message de 1 à N jusqu'à 99 (dans les faits de 1 à 8)
 
 On propose donc le schéma de trame suivant :
 
 ![Schéma de trame RF](Reference/Images/TrameMicroBit.png)
 
-Avec les informations fournis au préalable on aura donc déjà une trame de 8 caractères avec l'ID de la carte et le numéro d'acquitement. On aura donc 243 caractères de libre (251 au max lors d'un message RF) pour les données correspondant au message JSON.
 
 On aura donc le schéma de communication suivant :
 
