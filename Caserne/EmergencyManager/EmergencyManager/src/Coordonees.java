@@ -1,14 +1,14 @@
 public class Coordonees {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
-    public Coordonees(int x, int y)
+    public Coordonees(float x, float y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
@@ -16,7 +16,7 @@ public class Coordonees {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 

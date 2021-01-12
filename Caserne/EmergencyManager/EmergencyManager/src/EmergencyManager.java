@@ -5,6 +5,9 @@ public class EmergencyManager {
 
     public static void main(String[] args) {
         System.out.println("Bienvenue dans l'emergency manager");
+        Database db = new Database();
+        System.out.println(db.getListeFeux());
+        db.CloseCo();
         while (true) {
 
         }

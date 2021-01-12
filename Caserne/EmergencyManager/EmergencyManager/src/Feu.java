@@ -1,9 +1,11 @@
 public class Feu {
+    private final int id;
     private int intensite;
     private Coordonees coord;
     private boolean brule;
 
-    public Feu(int intensite, Coordonees coord) {
+    public Feu(int idCapt, int intensite, Coordonees coord) {
+        this.id = idCapt;
         this.intensite = intensite;
         this.coord = coord;
     }
@@ -14,6 +16,10 @@ public class Feu {
 
     public void setBrule(boolean brule) {
         this.brule = brule;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getIntensite() {

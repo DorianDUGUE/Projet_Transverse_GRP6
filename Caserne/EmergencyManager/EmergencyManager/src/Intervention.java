@@ -1,42 +1,26 @@
-import java.util.List;
-
 public class Intervention {
-    private Coordonees coords;
-    private List<Camion> camions;
+    private Camion camions;
     private Feu feu;
 
-    public Intervention(Coordonees coords, List<Camion> camions, Feu feu) {
-        this.coords = coords;
+    public Intervention(Camion camions, Feu feu) {
         this.camions = camions;
         this.feu = feu;
     }
 
-    public Intervention(Coordonees coords,  Feu feu) {
-        this.coords = coords;
+    public Intervention(Feu feu) {
         this.feu = feu;
     }
 
-    public Intervention CreerIntervention(Coordonees coords, Feu feu)
-    {
-        Intervention nouvelleIntervention = new Intervention(coords,feu);
-
-        return nouvelleIntervention;
+    public Intervention CreerIntervention(Camion camions, Feu feu) {
+        return new Intervention(camions,feu);
     }
 
 
-    public Coordonees getCoords() {
-        return coords;
-    }
-
-    public void setCoords(Coordonees coords) {
-        this.coords = coords;
-    }
-
-    public List<Camion> getCamions() {
+    public Camion getCamions() {
         return camions;
     }
 
-    public void setCamions(List<Camion> camions) {
+    public void setCamions(Camion camions) {
         this.camions = camions;
     }
 
