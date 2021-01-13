@@ -6,7 +6,7 @@ from threading import Thread
 """ initialisation de base """
 master = Tk()
 master.title("Process Caserne")
-SERIALPORT = "COM5"
+SERIALPORT = "COM6"
 BAUDRATE = 115200
 ser = serial.Serial()
 client = mqtt.Client("SP_EmergencyManager")
@@ -169,7 +169,8 @@ def write_scales():
                 for i in range(len(liste) - 1):
                     print(liste[i])
                     msg = ParseFormat(liste[i] + "}")
-                    InsertBD(msg)
+                    if msg != 0:
+                        InsertBD(msg)
                     """ print('INSERT INTO Capteur(id,x,y,valeur) VALUES('+ str(msg[0])+ ','+ str(msg[1])+ ','+ str(msg[2])+ ','+ str(msg[3])+ ');') """
             elif msg != "":
                 print("Pas pris en compte")
