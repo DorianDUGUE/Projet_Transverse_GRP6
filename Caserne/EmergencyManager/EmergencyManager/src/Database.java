@@ -16,9 +16,9 @@ public class Database {
             System.out.println("Erreur lors du chargement du driver BDD : "+e.getMessage());
         }
         /* Connexion à la base de données */
-        String url = "jdbc:mariadb://127.0.0.1:3306/DBCaserne";
-        String utilisateur = "simu";
-        String motDePasse = "simu";
+        String url = "jdbc:mariadb://127.0.0.1:3307/DBCaserne";
+        String utilisateur = "root";
+        String motDePasse = "";
         try {
             this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
             /* Création de l'objet gérant les requêtes */
@@ -45,7 +45,7 @@ public class Database {
         ResultSet resultat;
         String req = "";
         try {
-            req = "SELECT * FROM Capteur";
+            req = "SELECT * FROM Capteur WHERE valeur > 0";
             resultat = this.statement.executeQuery( req );
             /* Récupération des données du résultat de la requête de lecture */
             while ( resultat.next() ) {
@@ -53,7 +53,6 @@ public class Database {
                 //on récupère les valeurs ligne par ligne avec leur nom de colonne (il faut que j'ajoute les valeurs de la table incendie je n'avais pas vu)
                 Coordonees tempCoord = new Coordonees( resultat.getFloat("x"), resultat.getFloat( "y" ));
                 Feu feuTemp = new Feu(resultat.getInt( "id" ),resultat.getInt( "valeur" ),tempCoord);
-                System.out.println(feuTemp);
                 //on ajoute chaque feu récupéré à notre liste de feux
                 listFeux.add(feuTemp);
             }

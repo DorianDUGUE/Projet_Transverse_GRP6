@@ -4,8 +4,6 @@ public class Camion {
     private Coordonees coord;
     private Boolean enIntervention;
 
-
-
     public Camion(int idCam, int pouvoirDArret, Coordonees coord, boolean enIntervention) {
         this.numero = idCam;
         this.pouvoirDArret = pouvoirDArret;
@@ -29,15 +27,8 @@ public class Camion {
         return coord;
     }
 
-    public void deplacer(Coordonees coord) {
-        this.coord = coord;
+    public void deplacer(Coordonees coordonees) {
+        this.coord = coordonees;
     }
 
-    public Boolean getEnIntervention() {
-        return enIntervention;
-    }
-
-    public void setEnIntervention(Boolean enIntervention) {
-        this.enIntervention = enIntervention;
-    }
 }
