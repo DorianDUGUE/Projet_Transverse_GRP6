@@ -1,70 +1,70 @@
 from microbit import *
 import radio
+import random
 
 # Constantes
-CARD_ID = "C2"
-CARD_AUTH = "C1"
-CHANNEL = 5
-#ASCII = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
+CARD_ID = "C2" #Cette carte
+CARD_AUTH = "C1" #Cartes autorisées
+CHANNEL = 5 #Canal pour RF
+alphabet = 'ABCDEFGHIJKLNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789(),:."'
+key = 'm9lDLfJcv3rTGH:Q4oI(UbWkiEdga6OAZ"RqjYs.F0,B)8ezPtypVN7Kw1XxSu2hC5n' #Clef de chiffrement par substitution
 
 # Config Radio
-radio.on()
-radio.config(channel=CHANNEL, length=251)
-
+radio.on() #Lancement du module radio
+radio.config(channel=CHANNEL, length=251, queue=1) #Configuration radio
 
 # Config Serial
-uart.init(baudrate=115200)
+uart.init(baudrate=115200) #Configuration serial
 
-def send(m): #Fonction envoie série
-    b = []
-    for c in m:
-        b.append(ord(c))
-    d = bytes(b)
-    uart.write(d)
-
+#Fonctions
 def uart_receive(): #Fonction recéption série
-    s = ""
-    if uart.any():
-        m = uart.read()
-        for b in m:
-            s = s + chr(b)
-    return s
+    ACK = 1         #Création du compteur d'ACK
+    var = ""		#Création de la variable contenant le string serie
 
-#Initialiser le tableau puis le remplir dès que le caractère ; arrive
-"""
-Code de la partie UART :
-
-def uart_receive(): #Fonction recéption série
-    tab = []
-    var = ""		#Création du string
     if uart.any():	#Vérification données en entrée
         lecture_uart = uart.read() #Lecture des données
+
         for char in lecture_uart:	#Boucle pour chaque caractères
             var = var + chr(char) #Ajout dans le string
-            if var == ";":
-                tab.append(var)
-                var = ""		#Mise à zero
-    return tab	
-   }
 
-"""
+            if chr(char) == ")": #Decouapge d'une trame
+                encryptstring = encrypt(var,key,alphabet) #Chiffrement
+                checksum_string = checksum(encryptstring) #Checksum
+                stringToSend = CARD_ID+"/"+str(ACK)+"/"+encryptstring+"/"+str(checksum_string) #Création de la string à envoyer
+                
+                radio.send(str(stringToSend)) #Envoie RF
 
-#Variables
-tab_data = []
-boucle = False
-ACK = 0
+                string_receive = radio.receive() #Reçu ACK RF
 
-while True:
+                while string_receive == None: #Boucle de recherche
+                    string_receive = radio.receive()
 
-    # Réception du message série
-    DATA = uart_receive()
-    sleep(20)
+                tab_receive = string_receive.split('/') #Decoupage des valeurs reçu
 
-    #Construction de la trame
-    stringToSend = CARD_ID + "," + str(ACK) + "," + DATA
+                if tab_receive[0]!="C1" and tab_receive[1]!=ACK and tab_receive[2]!="1":
+                    radio.send(stringToSend)
+                    sleep(3000)
+                    string_receive = radio.receive()
+                    tab_receive = string_receive.split("/")
 
-    if string != "":
-        # Envoie du de la trame
-        radio.send(string)
+                display.show(ACK) #Visuel de vérification
+                var = ""                #Mise à zero
+                string_receive = None   #Mise à zero
+                sleep(200)
+                ACK+=1      #Augmentation du compteur
+                if ACK == 9:
+                    ACK = 2
+                sleep(1000)
 
+def checksum(msg): #Fonction de checksum
+  v = 21
+  for c in msg:
+    v ^= ord(c)
+  return v
 
+def encrypt(plaintext, key, alphabet):#Fonction de chiffrement par substitution
+    keyMap = dict(zip(alphabet, key)) #Création d'un tuple puis d'un dictionnaire
+    return ''.join(keyMap.get(c, c) for c in plaintext) #Mélange selon la clé
+
+while True:    # Réception du message série
+    uart_receive() #Appel fonction
