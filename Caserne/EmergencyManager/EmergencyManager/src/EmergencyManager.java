@@ -11,9 +11,33 @@ public class EmergencyManager {
         System.out.println("Bienvenue dans l'emergency manager");
         Database db = new Database();
 
-            main.createInterventionForEachFeu(db);
+        main.createInterventionForEachFeu(db);
 
+        Runnable r = new Runnable() {
+            public void run() {
+                Database db = new Database();
+                while (true) {
+                    List<Intervention> interList = db.getListeIntervention();
+                    for (Intervention uneIntervention : interList) {
+                        if (uneIntervention.getCamions() != null) {
+                            int intensite = uneIntervention.getFeu().getIntensite();
+                            int pouvoirdarret = uneIntervention.getCamions().getPouvoirDArret();
+                            int diminuer = (int) (pouvoirdarret * 0.2);
+                            uneIntervention.getFeu().setIntensite(intensite - diminuer);
+                            db.updateIntervention(uneIntervention);
+                        }
+                    }
+                    try {
+                        Thread.sleep(20000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+            }
+        };
+
+        new Thread(r).start();
 
         db.CloseCo();
 
@@ -23,15 +47,9 @@ public class EmergencyManager {
         return Math.sqrt(((coordUn.getX() - coordDeux.getX()) * (coordUn.getX() - coordDeux.getX())) + ((coordUn.getY() - coordDeux.getY()) * (coordUn.getY() - coordDeux.getY())));
     }
 
-    public void updateInterventions(Database db){
-        List<Intervention> interList = db.getListeIntervention();
-        for (uneIntervention:interList) {
-            uneIntervention.
-        }
+    public void updateInterventions(Database db) {
+
     }
-
-
-
 
 
     public void createInterventionForEachFeu(Database db) {
@@ -49,7 +67,7 @@ public class EmergencyManager {
 
         for (Feu unFeu : feuList) {
             for (Intervention uneIntervention : interList) {
-                if (uneIntervention.getFeu().getId() != unFeu.getId() && !feuWithIntervention.contains(unFeu) ) {
+                if (uneIntervention.getFeu().getId() != unFeu.getId() && !feuWithIntervention.contains(unFeu)) {
                     for (Camion unCamion : camionList) {
                         if (!unCamion.getEnIntervention()) {
                             double tempDistance = calculeDistance(unFeu.getCoord(), unCamion.getCoord());
@@ -61,24 +79,22 @@ public class EmergencyManager {
                             System.out.println(unCamion);
                         }
                     }
-                    if (distance == 999999999)
-                    {
+                    if (distance == 999999999) {
                         System.out.println("Aucun Camion n'est actuellement disponible, ils sont tous en intervention :/ ");
                         needToBreak = true;
                         break;
                     }
                     bestCamion.setEnIntervention(true);
                     db.createIntervention("En feu !", unFeu, bestCamion);
-                }
-                else{
+                } else {
                     feuWithIntervention.add(unFeu);
                     breakOutOfIntervention = true;
                 }
                 feuWithIntervention.add(unFeu);
                 System.out.println(unFeu);
-                if(breakOutOfIntervention) break;
+                if (breakOutOfIntervention) break;
             }
-            if(needToBreak) break;
+            if (needToBreak) break;
         }
 
     }
