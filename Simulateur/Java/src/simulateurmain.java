@@ -10,10 +10,11 @@ public class simulateurmain {
         Scanner Fueg = new Scanner(System.in);
 
         Database DB = new Database();
+        DatabaseSimu dbSimu = new DatabaseSimu();
 
 
         System.out.println("Bienvenue dans l'emergency manager");
-
+/*
         Runnable r = new Runnable() {
             public void run() {
                 DatabaseCaserne DbCaserne = new DatabaseCaserne();
@@ -27,10 +28,10 @@ public class simulateurmain {
         };
 
         new Thread(r).start();
-
+*/
         //Faire un menu
-        //Recuperer l'entréé du menu (scanner)
-        //switch case => créer des methodes
+        //Récupérer l'entrée du menu (scanner)
+        //switch case => créer des méthodes
         int choix, Id, PvdArr, Fuego;
         float CodX, CodY;
         System.out.println("1- Déplacer un camion");
@@ -74,7 +75,7 @@ public class simulateurmain {
                 Feu Feufeu = new Feu(Id,Fuego,Tempcord);
                 Feufeu.setIntensite(Fuego);
 
-                DB.updateCapteur(Feufeu);
+                dbSimu.updateCapteur(Feufeu);
 
                 break;
             case 3:

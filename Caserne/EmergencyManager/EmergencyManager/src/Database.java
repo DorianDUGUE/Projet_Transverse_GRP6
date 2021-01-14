@@ -170,7 +170,7 @@ public class Database {
         /* Exécution d'une requête de lecture */
         String req = "";
         try {
-            req = "UPDATE Capteur set valeur=" + feu.getIntensite() + "WHERE id=" + feu.getId() ;
+            req = "UPDATE Capteur set valeur=" + feu.getIntensite() + " WHERE id=" + feu.getId() ;
             this.statement.executeUpdate(req);
         }catch (SQLException e){
             System.out.println("[ERREUR] " + req );
@@ -189,5 +189,58 @@ public class Database {
         }
         return camion;
     }
+
+    public void updateIntervention (Intervention intervention,String FireEtat ){
+        String req = "";
+        char guil = '\"';
+        ResultSet res ;
+        Camion cmn = intervention.getCamions();
+        Feu fre = intervention.getFeu();
+        try {
+            req = "SELECT * FROM Incendie WHERE id = " + fre.getId();
+            res = this.statement.executeQuery(req);
+            if (res.next()){
+                req = "UPDATE Incendie set Etat=" + guil + FireEtat + guil + "WHERE id=" + fre.getId() ;
+                this.statement.executeUpdate(req);
+                System.out.println("[CAM] "+ req);
+            }else{
+                createIntervention(FireEtat, fre, cmn);
+            }
+        }catch (SQLException e){
+            System.out.println("[ERREUR] " + req );
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void DropIntervention (Intervention intervention){
+        String req = "";
+        ResultSet res ;
+        Camion cmn = intervention.getCamions();
+        Feu fre = intervention.getFeu();
+        try {
+            req = "SELECT * FROM Intervention WHERE numCamion = " + cmn.getNumero();
+            res = this.statement.executeQuery(req);
+            if (res.next()){
+                req = "SELECT * FROM Incendie WHERE id = " + fre.getId() + "AND idIntervention =" + res.getInt("id");
+                res = this.statement.executeQuery(req);
+                if (res.next()){
+                    req = "DROP FROM Incendie WHERE id=" + fre.getId() ;
+                    this.statement.executeUpdate(req);
+                    System.out.println("[INCD] "+ req);
+                    req = "DROP FROM Intervention WHERE id=" + res.getInt("id") ;
+                    this.statement.executeUpdate(req);
+                    System.out.println("[INT] "+ req);
+                }else{
+                    System.out.println("[ERREUR] Inconnu in base");
+                }
+            }else{
+                System.out.println("[ERREUR] Inconnu in base");
+            }
+        }catch (SQLException e){
+            System.out.println("[ERREUR] " + req );
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }

@@ -13,6 +13,7 @@ public class EmergencyManager {
 
         main.createInterventionForEachFeu(db);
 
+
         Runnable r = new Runnable() {
             public void run() {
                 Database db = new Database();
@@ -23,13 +24,21 @@ public class EmergencyManager {
                             int intensite = uneIntervention.getFeu().getIntensite();
                             int pouvoirdarret = uneIntervention.getCamions().getPouvoirDArret();
                             int diminuer = (int) (pouvoirdarret * 0.2);
-                            uneIntervention.getFeu().setIntensite(intensite - diminuer);
-                            db.updateIntervention(uneIntervention);
+                            int newIntensite = intensite - diminuer +1;
+                            if (newIntensite > 0)
+                            {
+                                uneIntervention.getFeu().setIntensite(newIntensite);
+                                db.updateCapteur(uneIntervention.getFeu());
+                            }
+                            else{
+                                db.DropIntervention(uneIntervention);
+                            }
                         }
                     }
                     try {
                         Thread.sleep(20000);
                     } catch (InterruptedException e) {
+                        db.CloseCo();
                         e.printStackTrace();
                     }
                 }
@@ -86,6 +95,8 @@ public class EmergencyManager {
                     }
                     bestCamion.setEnIntervention(true);
                     db.createIntervention("En feu !", unFeu, bestCamion);
+                    bestCamion.deplacer(unFeu.getCoord());
+                    db.moveCamion(bestCamion);
                 } else {
                     feuWithIntervention.add(unFeu);
                     breakOutOfIntervention = true;

@@ -8,11 +8,11 @@ public class DatabaseCaserne {
 
     public DatabaseCaserne () {
         /* Connexion à la base de données */
-        String url = "jdbc:mariadb://127.0.0.1:3307/DBCaserne";
+        String url = "jdbc:mariadb://127.0.0.1:3307/dbcaserne";
         String utilisateur = "root";
         String motDePasse = "";
         try {
-            this.connexion = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/DBCaserne?user=root&password=");
+            this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
             /* Création de l'objet gérant les requêtes */
             this.statement = this.connexion.createStatement();
             System.out.println("[CON] Sucess database connexion");

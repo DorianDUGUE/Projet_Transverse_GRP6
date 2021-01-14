@@ -8,11 +8,11 @@ public class DatabaseSimu {
 
     public DatabaseSimu () {
         /* Connexion à la base de données */
-        String url = "jdbc:mariadb://127.0.0.1:3306/simulation";
-        String utilisateur = "simu";
-        String motDePasse = "simu";
+        String url = "jdbc:mariadb://127.0.0.1:3307/simulation";
+        String utilisateur = "root";
+        String motDePasse = "";
         try {
-            this.connexion = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/simulation?user=simu&password=simu");
+            this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
             /* Création de l'objet gérant les requêtes */
             this.statement = this.connexion.createStatement();
             System.out.println("[CON] Sucess database connexion");

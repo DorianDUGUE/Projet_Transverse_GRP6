@@ -10,11 +10,11 @@ public class Database {
     Statement statement = null;
     public Database () {
         /* Connexion à la base de données */
-        String url = "jdbc:mariadb://127.0.0.1:3306/DBCaserne";
-        String utilisateur = "simu";
-        String motDePasse = "simu";
+        String url = "jdbc:mariadb://127.0.0.1:3307/simulation";
+        String utilisateur = "root";
+        String motDePasse = "";
         try {
-            this.connexion = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/DBCaserne?user=simu&password=simu");
+            this.connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
             /* Création de l'objet gérant les requêtes */
             this.statement = this.connexion.createStatement();
             System.out.println("[CON] Sucess database connexion");
