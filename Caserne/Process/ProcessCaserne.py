@@ -6,7 +6,7 @@ from threading import Thread
 """ initialisation de base """
 master = Tk()
 master.title("Process Caserne")
-SERIALPORT = "COM6"
+SERIALPORT = "COM7"
 BAUDRATE = 115200
 ser = serial.Serial()
 client = mqtt.Client("SP_EmergencyManager")
@@ -70,7 +70,7 @@ def ReceiveUARTMessage():
 def ParseFormat(msg):
     try:    
         temp = json.loads(msg)
-        liste = ( temp["Capteur"], temp["PosX"], temp["PosY"], temp["Intensite"] )
+        liste = ( temp["Capteur"], temp["PosY"], temp["PosX"], temp["Intensite"] )
         print ("Reception UART : ", liste)
         return liste
     except Exception as e:
@@ -169,8 +169,7 @@ def write_scales():
                 for i in range(len(liste) - 1):
                     print(liste[i])
                     msg = ParseFormat(liste[i] + "}")
-                    if msg != 0:
-                        InsertBD(msg)
+                    InsertBD(msg) 
                     """ print('INSERT INTO Capteur(id,x,y,valeur) VALUES('+ str(msg[0])+ ','+ str(msg[1])+ ','+ str(msg[2])+ ','+ str(msg[3])+ ');') """
             elif msg != "":
                 print("Pas pris en compte")
