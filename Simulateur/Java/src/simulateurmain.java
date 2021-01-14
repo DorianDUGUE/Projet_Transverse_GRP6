@@ -29,6 +29,7 @@ public class simulateurmain {
 
         new Thread(r).start();
 */
+        /*
         //Faire un menu
         //Récupérer l'entrée du menu (scanner)
         //switch case => créer des méthodes
@@ -81,6 +82,8 @@ public class simulateurmain {
             case 3:
                 System.out.println("Merci d'avoir utilisé l'application");
                 break;
-        }
+
+
+        }*/
     }
 }
