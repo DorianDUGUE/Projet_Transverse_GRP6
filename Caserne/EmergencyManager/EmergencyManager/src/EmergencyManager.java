@@ -7,48 +7,51 @@ public class EmergencyManager {
 
 
     public static void main(String[] args) {
-        EmergencyManager main = new EmergencyManager();
         System.out.println("Bienvenue dans l'emergency manager");
-        Database db = new Database();
 
-        main.createInterventionForEachFeu(db);
+        Runnable newThread = new Runnable() {
+            public void run() {
+
+                EmergencyManager interventionThread = new EmergencyManager();
+                while(true)
+                {
+                    try{
+                        Database db = new Database();
+                        interventionThread.createInterventionForEachFeu(db);
+                        db.CloseCo();
+                        Thread.sleep(10000);
+                    }
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+        };
+        new Thread(newThread).start();
+
+
 
 
         Runnable r = new Runnable() {
             public void run() {
-                Database db = new Database();
+                EmergencyManager updateThread = new EmergencyManager();
                 while (true) {
-                    List<Intervention> interList = db.getListeIntervention();
-                    for (Intervention uneIntervention : interList) {
-                        if (uneIntervention.getCamions() != null) {
-                            int intensite = uneIntervention.getFeu().getIntensite();
-                            int pouvoirdarret = uneIntervention.getCamions().getPouvoirDArret();
-                            int diminuer = (int) (pouvoirdarret * 0.2);
-                            int newIntensite = intensite - diminuer +1;
-                            if (newIntensite > 0)
-                            {
-                                uneIntervention.getFeu().setIntensite(newIntensite);
-                                db.updateCapteur(uneIntervention.getFeu());
-                            }
-                            else{
-                                db.DropIntervention(uneIntervention);
-                            }
-                        }
-                    }
                     try {
+                        Database db = new Database();
+                        updateThread.updateInterventions(db);
+                        db.CloseCo();
                         Thread.sleep(20000);
                     } catch (InterruptedException e) {
-                        db.CloseCo();
                         e.printStackTrace();
                     }
                 }
 
             }
         };
-
         new Thread(r).start();
 
-        db.CloseCo();
 
     }
 
@@ -57,7 +60,23 @@ public class EmergencyManager {
     }
 
     public void updateInterventions(Database db) {
-
+        List<Intervention> interList = db.getListeIntervention();
+        for (Intervention uneIntervention : interList) {
+            if (uneIntervention.getCamions() != null) {
+                int intensite = uneIntervention.getFeu().getIntensite();
+                int pouvoirdarret = uneIntervention.getCamions().getPouvoirDArret();
+                int diminuer = (int) (pouvoirdarret * 0.2);
+                int newIntensite = intensite - diminuer +1;
+                if (newIntensite > 0)
+                {
+                    uneIntervention.getFeu().setIntensite(newIntensite);
+                    db.updateCapteur(uneIntervention.getFeu());
+                }
+                else{
+                    db.DropIntervention(uneIntervention);
+                }
+            }
+        }
     }
 
 
