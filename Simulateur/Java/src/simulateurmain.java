@@ -14,7 +14,7 @@ public class simulateurmain {
 
 
         System.out.println("Bienvenue dans l'emergency manager");
-/*
+
         Runnable r = new Runnable() {
             public void run() {
                 DatabaseCaserne DbCaserne = new DatabaseCaserne();
@@ -28,11 +28,8 @@ public class simulateurmain {
         };
 
         new Thread(r).start();
-*/
-        /*
-        //Faire un menu
-        //Récupérer l'entrée du menu (scanner)
-        //switch case => créer des méthodes
+
+
         int choix, Id, PvdArr, Fuego;
         float CodX, CodY;
         System.out.println("1- Déplacer un camion");
@@ -84,6 +81,6 @@ public class simulateurmain {
                 break;
 
 
-        }*/
+        }
     }
 }
