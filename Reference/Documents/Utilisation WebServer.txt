@@ -6,8 +6,8 @@ Fichier > Importer un appareil virtuel > selectionner dans fichier le fichier.ov
 
 L'allumer :
 les codes sont 
-login : dev
-mdp : dev
+login : cloud
+mdp : cloud
 
 Tous les services sont activé lors de son démarrage.
 
