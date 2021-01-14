@@ -5,7 +5,6 @@ import java.util.List;
 
 public class EmergencyManager {
 
-
     public static void main(String[] args) {
         System.out.println("Bienvenue dans l'emergency manager");
 
@@ -24,15 +23,10 @@ public class EmergencyManager {
                     catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                 }
             }
         };
         new Thread(newThread).start();
-
-
-
 
         Runnable r = new Runnable() {
             public void run() {

@@ -16,7 +16,7 @@ public class Database {
             System.out.println("Erreur lors du chargement du driver BDD : "+e.getMessage());
         }
         /* Connexion à la base de données */
-        String url = "jdbc:mariadb://127.0.0.1:3307/DBCaserne";
+        String url = "jdbc:mariadb://127.0.0.1:3307/dbcaserne";
         String utilisateur = "root";
         String motDePasse = "";
         try {
@@ -145,14 +145,15 @@ public class Database {
     public Intervention createIntervention(String FireEtat, Feu feu, Camion camion) {
         /* Exécution d'une requête de lecture */
         String req = "";
+        char guil = '\"';
         ResultSet res ;
         try {
             Date date = new Date();
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            req = "INSERT INTO Intervention (HeureDebut, numCamion) Values (" + format.format(date) + "," + camion.getNumero() +")";
+            req = "INSERT INTO Intervention (HeureDebut, numCamion) Values (" + guil + format.format(date) + guil + "," + camion.getNumero() +")";
             int resultat = this.statement.executeUpdate( req );
             System.out.println("[INSERT] nb mise à jour"+resultat);
-            req = "SELECT * FROM Intervention WHERE HeureDebut = " + format.format(date);
+            req = "SELECT * FROM Intervention WHERE HeureDebut = " + guil +format.format(date)+ guil ;
             res = this.statement.executeQuery(req);
             if (res.next()){
                 req = "INSERT INTO Incendie (Etat, idIntervention, NumCapteur) VALUES (" + FireEtat + "," + res.getInt( "id" ) + "," + feu.getId() + ")";

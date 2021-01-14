@@ -39,8 +39,6 @@ public class simulateurmain {
         choix= sc.nextInt();
 
 
-
-
         System.out.println("Vous avez choisi le: " + choix);
         switch (choix){
             case 1:
@@ -82,5 +80,6 @@ public class simulateurmain {
 
 
         }
+
     }
 }
